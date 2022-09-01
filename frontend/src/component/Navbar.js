@@ -32,7 +32,7 @@ function Navbar(props) {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               {props.user && (
-                <div>
+                <div style={{display: "flex"}}>
                   <li class="nav-item">
                     <Link to="/category">Add Category</Link>
                   </li>

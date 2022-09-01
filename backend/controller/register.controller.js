@@ -40,11 +40,11 @@ const postLogin = async (req, res) => {
         return res.send(err.sqlMessage);
       }
 
-      if (result) {
-        return res.send({ Status: 200, Response: result });
-      } else {
-        return res.send({ Message: "Wrong Password Combination" });
-      }
+      // if (result) {
+      return res.send({ Status: 200, Response: result });
+      // } else {
+      //   return res.send({ Message: "Wrong Password Combination" });
+      // }
     });
   } catch (error) {
     console.log(error.sqlMessage);

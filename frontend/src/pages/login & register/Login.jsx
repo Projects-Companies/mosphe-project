@@ -18,7 +18,8 @@ function Login({ user, setUser }) {
     });
   };
 
-  function loginData() {
+  function submitData(e) {
+    e.preventDefault();
     const data = {
       email: field.email,
       password: field.password,
@@ -45,7 +46,7 @@ function Login({ user, setUser }) {
 
   return (
     <div className="p-2">
-      <form>
+      <form onSubmit={submitData}>
         <div className="mb-3">
           <label for="exampleInputEmail1" className="form-label">
             Email
@@ -80,7 +81,7 @@ function Login({ user, setUser }) {
         </div>
 
         <center>
-          <button type="submit" className="btn btn-primary" onClick={loginData}>
+          <button type="submit" className="btn btn-primary">
             Login
           </button>
         </center>
