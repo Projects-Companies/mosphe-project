@@ -72,7 +72,7 @@ function Register() {
         </div>
         <div className="mb-3">
           <label for="exampleInputEmail1" className="form-label">
-            Email Email
+            Enter Your Email
           </label>
           <input
             type="email"
@@ -90,15 +90,14 @@ function Register() {
         </div>
         <div className="mb-3">
           <label for="exampleInputPassword1" className="form-label">
-            Phone
+            Enter Your Phone
           </label>
           <input
-            type="text"
+            type="number"
             name="phone"
             value={field.phone}
             onChange={handleChange}
-            minLength={10}
-            maxLength={10}
+            pattern={`${[0-9][10]}`}
             className="form-control"
             id="exampleInputPassword1"
             required
@@ -106,7 +105,7 @@ function Register() {
         </div>
         <div className="mb-3">
           <label for="exampleInputPassword1" className="form-label">
-            Password
+            Enter Password
           </label>
           <input
             type="password"
@@ -126,12 +125,12 @@ function Register() {
             required
           />
           <label className="form-check-label" for="exampleCheck1" name="check">
-            Check me out
+            I agree to the Terms and Conditions.
           </label>
         </div>
         <center>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Register
           </button>
         </center>
       </form>

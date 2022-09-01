@@ -31,4 +31,24 @@ const postRegister = async (req, res) => {
   }
 };
 
-module.exports = { getRegister, postRegister };
+const postLogin = async (req, res) => {
+  try {
+    const data = req.body;
+    const sqlQuery = "SELECT * FROM register email = ? AND password = ?";
+    await con.query(sqlQuery, data, (err, result) => {
+      if (err) {
+        return res.send(err.sqlMessage);
+      }
+
+      if (result) {
+        return res.send({ Status: 200, Response: result });
+      } else {
+        return res.send({ Message: "Wrong Password Combination" });
+      }
+    });
+  } catch (error) {
+    console.log(error.sqlMessage);
+  }
+};
+
+module.exports = { getRegister, postRegister, postLogin };

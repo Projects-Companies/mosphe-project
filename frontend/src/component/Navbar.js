@@ -4,7 +4,7 @@ import Login from "../pages/login & register/Login";
 import Register from "../pages/login & register/Register";
 import Modal from "react-bootstrap/Modal";
 
-function Navbar() {
+function Navbar(props) {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,9 +15,9 @@ function Navbar() {
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" to="/">
             🏠
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -31,21 +31,26 @@ function Navbar() {
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <Link to="/category">Add Category</Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/view_category">View Category</Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/sub_category">Add Sub_Category</Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/view_sub_category">View Sub_Category</Link>
-              </li>
+              {props.user && (
+                <div>
+                  <li class="nav-item">
+                    <Link to="/category">Add Category</Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link to="/view_category">View Category</Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link to="/sub_category">Add Sub_Category</Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link to="/view_sub_category">View Sub_Category</Link>
+                  </li>
+                </div>
+              )}
+
               <li class="nav-item">
                 <button
-                  className="btn btn-primary btn-sm  mx-5"
+                  className="btn btn-primary btn-sm  mx-5 my-1"
                   onClick={handleShow}
                 >
                   Login
@@ -53,7 +58,7 @@ function Navbar() {
               </li>
               <li class="nav-item">
                 <button
-                  className="btn btn-primary btn-sm  mx-5"
+                  className="btn btn-primary btn-sm  mx-5 my-1"
                   onClick={handleShow2}
                 >
                   Register
@@ -74,7 +79,7 @@ function Navbar() {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Login />
+          <Login user={props.user} setUser={props.setUser} />
         </Modal.Body>
       </Modal>
 
@@ -88,7 +93,7 @@ function Navbar() {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Register />
+          <Register user={props.user} setUser={props.setUser} />
         </Modal.Body>
       </Modal>
     </div>

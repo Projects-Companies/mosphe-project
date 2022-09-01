@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Login() {
+function Login({ user, setUser }) {
   const [field, setField] = useState({
     email: "",
     password: "",
@@ -18,20 +18,19 @@ function Login() {
     });
   };
 
-  function submitData(e) {
-    e.preventDefault();
-
+  function loginData() {
     const data = {
       email: field.email,
       password: field.password,
     };
 
-    fetch("http://localhost:8000/Login", {
+    fetch("http://localhost:8000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }).then((res) => {
-      return res.json();
+      console.log(res);
+      setUser("userId");
     });
 
     setField({
@@ -40,13 +39,13 @@ function Login() {
     });
 
     setTimeout(() => {
-      alert("You Logined Successfully");
+      alert("You Logged in Successfully");
     }, 500);
   }
 
   return (
     <div className="p-2">
-      <form onSubmit={submitData}>
+      <form>
         <div className="mb-3">
           <label for="exampleInputEmail1" className="form-label">
             Email
@@ -81,8 +80,8 @@ function Login() {
         </div>
 
         <center>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button type="submit" className="btn btn-primary" onClick={loginData}>
+            Login
           </button>
         </center>
       </form>
